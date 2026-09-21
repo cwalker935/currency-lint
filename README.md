@@ -80,6 +80,12 @@ No dependencies beyond the standard library.
 pip install -e .
 ```
 
+## Tests
+
+```
+python -m unittest discover
+```
+
 ## License
 
 MIT, see [LICENSE](LICENSE).
