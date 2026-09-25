@@ -43,6 +43,16 @@ stdin.
 $ tail -f transactions.log | currencylint
 ```
 
+Pass `--format json` to get one JSON object per finding instead, written as
+newline-delimited JSON (one object per line, not a top-level array) so a
+consumer can start processing before the whole input has been read:
+
+```
+$ currencylint --format json prices.txt
+{"path": "prices.txt", "line": 1, "column": 16, "rule": "bad-decimal-precision", "message": "USD amounts should have 2 decimal digit(s), found 3", "text": "USD 19.999"}
+{"path": "prices.txt", "line": 2, "column": 10, "rule": "trailing-sign", "message": "negative sign trails the amount instead of leading it", "text": "$42.50-"}
+```
+
 ## Streaming
 
 `currencylint` never reads a whole file into memory. `lint_stream()` takes
